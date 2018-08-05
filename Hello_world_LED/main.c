@@ -12,6 +12,11 @@ int main(void)
 
   while(1)                                  // continuous loop
   {
+    BCSCTL1 &= ~BIT3;                 // set to DCO(7,3)
+    BCSCTL1 |= BIT0 + BIT1 + BIT2;
+    DCOCTL &= ~BIT7;
+    DCOCTL |= BIT5 + BIT6;
+
     P1OUT ^= BIT0;                          // XOR P1.0
     //for(i=0;i<0xFFFF;i++);                   // Delay
     for(i=0;i<0x0FFF;i++);                   // Delay
