@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v18.1.2                     
 ******************************************************************************
->> Linked Wed Aug  8 12:42:48 2018
+>> Linked Tue Jan 14 11:14:42 2020
 
 OUTPUT FILE NAME:   <GPIO_control_1.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 00004400

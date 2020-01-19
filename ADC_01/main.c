@@ -1,4 +1,5 @@
 #include <msp430.h>
+#include <stdio.h>
 
 int main(void)
 {
@@ -38,8 +39,8 @@ void __attribute__ ((interrupt(ADC12_VECTOR))) ADC12_ISR (void)
       P1OUT |= BIT0;                        // P1.0 = 1
     else
       P1OUT &= ~BIT0;                       // P1.0 = 0
-
     __bic_SR_register_on_exit(LPM0_bits);   // Exit active CPU
+    printf("Hello world! %d \n",ADC12MEM0);
   case  8: break;                           // Vector  8:  ADC12IFG1
   case 10: break;                           // Vector 10:  ADC12IFG2
   case 12: break;                           // Vector 12:  ADC12IFG3

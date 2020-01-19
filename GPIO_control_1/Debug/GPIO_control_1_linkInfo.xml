@@ -2,7 +2,7 @@
 <link_info>
    <banner>MSP430 Linker PC v18.1.2.LTS</banner>
    <copyright>Copyright (c) 2003-2017 Texas Instruments Incorporated</copyright>
-   <link_time>0x5b6b1d88</link_time>
+   <link_time>0x5e1de8f2</link_time>
    <link_errors>0x0</link_errors>
    <output_file>GPIO_control_1.out</output_file>
    <entry_point>

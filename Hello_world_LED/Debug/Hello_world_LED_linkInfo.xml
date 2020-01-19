@@ -2,7 +2,7 @@
 <link_info>
    <banner>MSP430 Linker PC v18.1.2.LTS</banner>
    <copyright>Copyright (c) 2003-2017 Texas Instruments Incorporated</copyright>
-   <link_time>0x5b6dbad1</link_time>
+   <link_time>0x5e211154</link_time>
    <link_errors>0x0</link_errors>
    <output_file>Hello_world_LED.out</output_file>
    <entry_point>
