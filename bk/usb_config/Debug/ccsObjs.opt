@@ -1,1 +1,0 @@
-"./main.obj" "./usb_config/UsbIsr.obj" "./usb_config/descriptors.obj" "../lnk_msp430f5529.cmd" -llibmath.a -llibc.a 
