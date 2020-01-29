@@ -7,6 +7,8 @@
 
 int main(void)
 {
+    int i, out00, out01, out10, out11;
+
     WDTCTL = WDTPW+WDTHOLD;                     // Stop WDT
 
     ADC12CTL0 = ADC12SHT02 + ADC12ON;           // Sampling time, ADC12 on
@@ -28,23 +30,76 @@ int main(void)
     P2SEL &= (~BIT5);                           // Set P2.5 SEL for GPIO
     P2DIR |= BIT5;                              // Set P2.5 as Output
 
-    P1SEL &= (~BIT3);                           // Set P1.3 SEL as GPIO
-    P1DIR &= (~BIT3);                           // Set P1.3 set SEL as Input
-    P1IES |= (BIT3);                            // Falling Edge 1 -> 0
-    P1IFG &= (~BIT3);                           // Clear interrupt flag for P1.3
+    P1OUT |= BIT4;                          // XOR P1.4 - Reset "On"
+    P2OUT &= (~BIT4);                          // XOR P2.4 - nFet Row0 "Off"
+    P2OUT &= (~BIT5);                          // XOR P2.5 - nFet Row1 "Off"
+    P2OUT &= (~BIT0);                          // XOR P2.0 - nFet Col0 "Off"
+    P2OUT &= (~BIT2);                          // XOR P2.2 - nFet Col1 "Off"
 
     while(1)
     {
-        if(P1IFG & BIT3){
-            P1OUT ^= BIT0;                          // XOR P1.0
-            P1OUT ^= BIT4;                          // XOR P1.4
-            P2OUT ^= BIT0;                          // XOR P2.0
-            P2OUT ^= BIT2;                          // XOR P2.2
-            P2OUT ^= BIT4;                          // XOR P2.4
-            P2OUT ^= BIT5;                          // XOR P2.5
-            ADC12CTL0 |= ADC12SC;                   // Start sampling/conversion
-            printf("Hello world! %d \n",ADC12MEM0);
-            P1IFG &= (~BIT3);                           // Clear interrupt flag for P1.3
-        }
+        P1OUT ^= BIT0;                          // XOR P1.0 (LED)
+
+        P2OUT |= BIT4;                          // P2.4 - nFet Row0 "On"
+        P2OUT |= BIT0;                          // P2.0 - nFet Col0 "On"
+        P1OUT &= (~BIT4);                       // P1.4 - Reset "Off"
+        for(i=0;i<0xFFFF;i++);                  // Delay for current to settle down
+        ADC12CTL0 |= ADC12SC;                   // Start sampling/conversion
+        out00=ADC12MEM0;
+        for(i=0;i<0xFFFF;i++);                  // Delay for current to settle down
+        P2OUT &= (~BIT0);                       // P2.0 - nFet Col0 "Off"
+        P2OUT &= (~BIT4);                       // P2.4 - nFet Row0 "Off"
+        P1OUT |= BIT4;                          // P1.4 - Reset "On"
+
+        for(i=0;i<0x00FF;i++);                  // Delay for reset
+
+        P2OUT |= BIT4;                          // P2.4 - nFet Row0 "On"
+        P2OUT |= BIT2;                          // P2.2 - nFet Col1 "On"
+        P1OUT &= (~BIT4);                       // P1.4 - Reset "Off"
+        for(i=0;i<0xFFFF;i++);                  // Delay for current to settle down
+        ADC12CTL0 |= ADC12SC;                   // Start sampling/conversion
+        for(i=0;i<0xFFFF;i++);                  // Delay for current to settle down
+        out01=ADC12MEM0;
+        P2OUT &= (~BIT2);                       // P2.2 - nFet Col1 "Off"
+        P2OUT &= (~BIT4);                       // P2.4 - nFet Row0 "Off"
+        P1OUT |= BIT4;                          // P1.4 - Reset "On"
+
+        for(i=0;i<0x00FF;i++);                  // Delay for reset
+
+        P2OUT |= BIT5;                          // P2.5 - nFet Row1 "On"
+        P2OUT |= BIT0;                          // P2.0 - nFet Col0 "On"
+        P1OUT &= (~BIT4);                       // P1.4 - Reset "Off"
+        for(i=0;i<0xFFFF;i++);                  // Delay for current to settle down
+        ADC12CTL0 |= ADC12SC;                   // Start sampling/conversion
+        for(i=0;i<0xFFFF;i++);                  // Delay for current to settle down
+        out10=ADC12MEM0;
+        P2OUT &= (~BIT0);                       // P2.0 - nFet Col0 "Off"
+        P2OUT &= (~BIT5);                       // P2.5 - nFet Row1 "Off"
+        P1OUT |= BIT4;                          // P1.4 - Reset "On"
+
+        for(i=0;i<0x00FF;i++);                  // Delay for reset
+
+        P2OUT |= BIT5;                          // P2.5 - nFet Row1 "On"
+        P2OUT |= BIT2;                          // P2.2 - nFet Col1 "On"
+        P1OUT &= (~BIT4);                       // P1.4 - Reset "Off"
+        for(i=0;i<0xFFFF;i++);                  // Delay for current to settle down
+        ADC12CTL0 |= ADC12SC;                   // Start sampling/conversion
+        for(i=0;i<0xFFFF;i++);                  // Delay for current to settle down
+        out11=ADC12MEM0;
+        P2OUT &= (~BIT2);                       // P2.2 - nFet Col1 "Off"
+        P2OUT &= (~BIT5);                       // P2.5 - nFet Row1 "Off"
+        P1OUT |= BIT4;                          // P1.4 - Reset "On"
+
+        for(i=0;i<0x00FF;i++);                   // Delay for reset
+
+        printf("00= %d, 01= %d, 10= %d, 11= %d \n",out00,out01,out10,out11);
+
+        for(i=0;i<0xFFFF;i++);                   // Delay
+        for(i=0;i<0xFFFF;i++);                   // Delay
+
+        //P2OUT |= BIT2;                          // XOR P2.2 - nFet Col1 "On"
+        //P2OUT |= BIT5;                          // XOR P2.5 - nFet Row1 "On"
+
+
     }
 }

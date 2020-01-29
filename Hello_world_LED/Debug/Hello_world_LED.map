@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v18.12.4                    
 ******************************************************************************
->> Linked Sun Jan 19 16:53:29 2020
+>> Linked Mon Jan 27 17:36:09 2020
 
 OUTPUT FILE NAME:   <Hello_world_LED.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 00004400
@@ -200,7 +200,7 @@ MODULE SUMMARY
     +--+------------------+------+---------+---------+
        Total:             30     0         0      
                                                   
-    C:\ti\ccs930\ccs\tools\compiler\ti-cgt-msp430_18.12.4.LTS\lib\rts430x_lc_rd_eabi.lib
+    D:\ti\ccs930\ccs\tools\compiler\ti-cgt-msp430_18.12.4.LTS\lib\rts430x_lc_rd_eabi.lib
        boot.c.obj         20     2         0      
        isr_trap.asm.obj   8      0         0      
        exit.c.obj         6      0         0      

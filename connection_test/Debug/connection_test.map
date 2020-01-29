@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v18.12.4                    
 ******************************************************************************
->> Linked Sun Jan 19 16:53:31 2020
+>> Linked Mon Jan 20 16:46:28 2020
 
 OUTPUT FILE NAME:   <connection_test.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00004400
@@ -289,7 +289,7 @@ MODULE SUMMARY
     +--+----------------------------+------+---------+---------+
        Total:                       30     14        0      
                                                             
-    C:\ti\ccs930\ccs\tools\compiler\ti-cgt-msp430_18.12.4.LTS\lib\rts430x_lc_rd_eabi.lib
+    D:\ti\ccs930\ccs\tools\compiler\ti-cgt-msp430_18.12.4.LTS\lib\rts430x_lc_rd_eabi.lib
        _printfi_min.c.obj           816    20        0      
        memory.c.obj                 758    0         6      
        trgmsg.c.obj                 104    0         288    
