@@ -30,11 +30,11 @@ int main(void)
     P2SEL &= (~BIT5);                           // Set P2.5 SEL for GPIO
     P2DIR |= BIT5;                              // Set P2.5 as Output
 
-    P1OUT |= BIT4;                          // XOR P1.4 - Reset "On"
-    P2OUT &= (~BIT4);                          // XOR P2.4 - nFet Row0 "Off"
-    P2OUT &= (~BIT5);                          // XOR P2.5 - nFet Row1 "Off"
-    P2OUT &= (~BIT0);                          // XOR P2.0 - nFet Col0 "Off"
-    P2OUT &= (~BIT2);                          // XOR P2.2 - nFet Col1 "Off"
+    P1OUT |= BIT4;                              // XOR P1.4 - Reset "On"
+    P2OUT &= (~BIT4);                           // XOR P2.4 - nFet Row0 "Off"
+    P2OUT &= (~BIT5);                           // XOR P2.5 - nFet Row1 "Off"
+    P2OUT &= (~BIT0);                           // XOR P2.0 - nFet Col0 "Off"
+    P2OUT &= (~BIT2);                           // XOR P2.2 - nFet Col1 "Off"
 
     while(1)
     {
